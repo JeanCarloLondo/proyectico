@@ -1,0 +1,14 @@
+quiero cambiar la raiz del arbol  a cualquier nodito y mantener la estructura del arbol 
+tengo que devolverme a encontrar la raiz original
+
+tecnica para balancear arboles 
+
+la idea es que si usted tiene 3 nodos usted pueda hacer todo en un paso
+ya que por cada nodo sabemos que es una listica
+entonces no aguanta yo preguntar 3 veces pa encontrar un valor dentro de una estructura de 3 nodos 
+
+
+PROX MIERCOLES FESTIVO PARCIAL 3 DE ESTRUCTURAS
+encontrar la raiz, que pasa con los kg -> Se puede comparar tambien con peso (si la edad es igual puedo pasar a comparar con el peso)
+si el peso es diferente retorno la comparacion de edad y visceverso
+elemento que va a ser la raiz no este repetido
