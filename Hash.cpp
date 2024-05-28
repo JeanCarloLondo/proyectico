@@ -33,15 +33,6 @@ void HashTable::insertItem(Dato &dato)
 {
     int hashValue = hashFunction(dato.id);
     auto &edi = table[hashValue];
-    for (auto &item : edi)
-    {
-        if (item.first == dato.id)
-        {
-            item.second = dato;
-            cout << "Hey, ID exists, owner replaced" << endl;
-            return;
-        }
-    }
     edi.emplace_back(dato.id, dato);
 }
 
@@ -60,6 +51,26 @@ void HashTable::removeItem(int id)
         }
     }
     cout << "Item not found, try again." << endl;
+}
+
+bool HashTable::searchItem(int id)
+{
+    int hashValue = hashFunction(id);
+    auto &edi = table[hashValue];
+
+    for (auto iterator = edi.begin(); iterator != edi.end(); ++iterator)
+    {
+        if (iterator->first == id)
+        {
+            cout<< "ID was founded!" << endl;
+            cout << "Name: " << iterator->second.name << endl;
+            cout << "ID: " << iterator->second.id << endl;
+            cout << "Room Number: " << iterator->second.roomNum << endl;
+            return true;
+        }
+    }
+    cout << "ID not founded, try again!" << endl;
+    return false;
 }
 
 void HashTable::printTable()

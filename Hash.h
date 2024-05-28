@@ -20,7 +20,7 @@ public:
     int hashFunction(int id);
     void insertItem(Dato &dato);
     void removeItem(int id);
-    // string searchTable(int roomNum);
+    bool searchItem(int id);
     void printTable();
 };
 

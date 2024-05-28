@@ -51,8 +51,9 @@ void menu(HashTable &hashTable)
         std::cout << "\nMenú:\n";
         std::cout << "1. Agregar Inquilino\n";
         std::cout << "2. Eliminar Inquilino\n";
-        std::cout << "3. Mostrar habitaciones\n";
-        std::cout << "4. Salir\n";
+        std::cout << "3. Mostrar Habitaciones\n";
+        std::cout << "4. Buscar Inquilino\n";
+        std::cout << "5. Salir\n";
 
         opcion = obtenerOpcionValida(); // Obtener una opción válida del usuario
 
@@ -84,7 +85,15 @@ void menu(HashTable &hashTable)
         case 3:
             hashTable.printTable();
             break;
+
         case 4:
+            cout << "Ingrese la cédula del inquilino que desea buscar: " << endl;
+            cin >> id;
+            hashTable.searchItem(id);
+        
+            break;
+
+        case 5:
             std::cout << "Saliendo del programa..." << std::endl;
             return; // Salir de la función y terminar el programa
         default:
