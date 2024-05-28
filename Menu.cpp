@@ -2,9 +2,14 @@
 #include <iostream>
 #include <string>
 #include <limits> // Para utilizar std::numeric_limits
-#include "Hash.h"
 #include "menu.h"
-#include "Dato.h"
+
+void setupConsole()
+{
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+#endif
+}
 
 // Función para obtener una opción válida del menú
 int obtenerOpcionValida()
