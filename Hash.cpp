@@ -17,40 +17,42 @@ bool HashTable::checkList()
     return false;
 }
 
-int HashTable::hashFunction(int roomNum)
+int HashTable::hashFunction(int id) // We add the sum of each digit of the id
 {
-    return roomNum % totRooms; // Key 905, in return, this func will spit out 9.
+    int sumOfId = 0;
+    int sumOfDigits = 0;
+    while (id > 0)
+    {
+        sumOfDigits += id % 10; // take the last number of the ID and added to the sum
+        id /= 10;               // that same number is eliminated to continue with the others
+    }
+    return sumOfDigits % totRooms;
 }
 
-void HashTable::insertItem(int roomNum, Dato &dato)
+void HashTable::insertItem(Dato &dato)
 {
-    int hashValue = hashFunction(roomNum);
+    int hashValue = hashFunction(dato.id);
     auto &edi = table[hashValue];
-    auto iterator = begin(edi);
-    bool roomExist = false;
-    for (iterator; iterator != end(edi); iterator++)
+    for (auto &item : edi)
     {
-        if(iterator->first == roomNum){
-            roomExist = true;
-            iterator->second = dato;
-            cout<< "Hey, room exist, owner replaced"<<endl;
-            break;
+        if (item.first == dato.id)
+        {
+            item.second = dato;
+            cout << "Hey, ID exists, owner replaced" << endl;
+            return;
         }
     }
-    if(!roomExist){
-        edi.emplace_back(roomNum, dato);
-    }
-    return;
+    edi.emplace_back(dato.id, dato);
 }
 
-void HashTable::removeItem(int roomNum)
+void HashTable::removeItem(int id)
 {
-    int hashValue = hashFunction(roomNum);
+    int hashValue = hashFunction(id);
     auto &edi = table[hashValue];
 
     for (auto iterator = edi.begin(); iterator != edi.end(); ++iterator)
     {
-        if (iterator->first == roomNum)
+        if (iterator->first == id)
         {
             edi.erase(iterator);
             cout << "Item was removed!" << endl;
@@ -69,41 +71,8 @@ void HashTable::printTable()
 
         for (const auto &item : table[i])
         {
-            cout << "Room Number: " << item.first << ", Name: " << item.second.name << endl;
+            cout << "ID: " << item.first << ", Name: " << item.second.name
+                 << ", Room Number: " << item.second.roomNum << endl;
         }
     }
-}
-
-int main()
-{
-    HashTable HT;
-
-    if (HT.checkList())
-    {
-        cout << "it works!" << endl;
-    }
-    else
-    {
-        cout << "pailas";
-    }
-
-    Dato pepe("Pepe", 400);
-    HT.insertItem(400, pepe);
-
-    Dato tom("Tom", 201);
-    HT.insertItem(201, tom);
-
-    Dato bob("Bob", 332);
-    HT.insertItem(332, bob);
-
-    Dato j("J", 332);
-    HT.insertItem(332, j);
-
-    HT.printTable();
-
-    HT.removeItem(400);
-
-    HT.printTable();
-
-    return 0;
 }

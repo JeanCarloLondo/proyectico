@@ -3,5 +3,5 @@
 #include "Dato.h"
 #include <sstream>
 
-Dato::Dato(std::string name, int roomNum)
-    : name(name), roomNum(roomNum) {}
+Dato::Dato(std::string name, int roomNum, int id)
+    : name(name), roomNum(roomNum), id(id) {}

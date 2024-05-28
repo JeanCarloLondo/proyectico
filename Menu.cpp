@@ -1,8 +1,9 @@
 
-/*#include <iostream>
+#include <iostream>
 #include <string>
 #include <limits> // Para utilizar std::numeric_limits
 #include "Hash.h"
+#include "menu.h"
 #include "Dato.h"
 
 // Función para obtener una opción válida del menú
@@ -33,10 +34,11 @@ int obtenerOpcionValida()
     }
 }
 
-void menu(HashTable &HashTable)
+void menu(HashTable &hashTable)
 {
     int opcion;
     int roomNum;
+    int id;
     std::string name;
 
     while (true)
@@ -46,19 +48,42 @@ void menu(HashTable &HashTable)
         std::cout << "2. Eliminar Inquilino\n";
         std::cout << "3. Mostrar habitaciones\n";
         std::cout << "4. Salir\n";
-    }
 
-     opcion = obtenerOpcionValida(); // Obtener una opción válida del usuario
+        opcion = obtenerOpcionValida(); // Obtener una opción válida del usuario
 
-      switch (opcion){
+        if (opcion == 0)
+        {
+            continue; // Si la opción es inválida, pedir otra opción
+        }
+
+        switch (opcion)
+        {
         case 1:
-            std::cout << "Ingrese Número de Habitación: ";
-            std::cin >> roomNum;
+        {
+            std::cout << "Ingrese Cédula del inquilino: ";
+            std::cin >> id;
             std::cout << "Ingrese nombre del inquilino: ";
-            std::cin.ignore();              // Limpiar el buffer de entrada antes de leer la línea
-            std::getline(std::cin,name); // Leer el nombre completo incluyendo espacios
-            HashTable.insertItem(roomNum, Dato::dato->name);
+            std::cin.ignore();            // Limpiar el buffer de entrada antes de leer la línea
+            std::getline(std::cin, name); // Leer el nombre completo incluyendo espacios
+            std::cout << "Ingrese NumHab del inquilino: ";
+            std::cin >> roomNum;
+            Dato dato(name, roomNum, id); // Crear una variable temporal Dato
+            hashTable.insertItem(dato);   // Pasar la variable a la función
             break;
-      }
+        }
+        case 2:
+            std::cout << "Ingrese Cédula del inquilino a eliminar: ";
+            std::cin >> id;
+            hashTable.removeItem(id);
+            break;
+        case 3:
+            hashTable.printTable();
+            break;
+        case 4:
+            std::cout << "Saliendo del programa..." << std::endl;
+            return; // Salir de la función y terminar el programa
+        default:
+            std::cerr << "Error: Opción no reconocida." << std::endl;
+        }
+    }
 }
-/**/

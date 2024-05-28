@@ -17,10 +17,10 @@ private:
 
 public:
     bool checkList(); // method to see if the list is empty or not
-    int hashFunction(int roomNum);
-    void insertItem(int roomNum, Dato& dato);
-    void removeItem(int roomNum);
-    //string searchTable(int roomNum);
+    int hashFunction(int id);
+    void insertItem(Dato &dato);
+    void removeItem(int id);
+    // string searchTable(int roomNum);
     void printTable();
 };
 

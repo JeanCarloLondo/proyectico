@@ -1,0 +1,15 @@
+#include <iostream>
+#include <string>
+#include <memory>
+#include "HashTable.h"
+#include "menu.h"
+
+
+int main()
+{
+    HashTable hashTable; // Crear una tabla hash con un número de habitaciones
+
+    menu(hashTable); // Ejecutar el menú
+
+    return 0;
+}
