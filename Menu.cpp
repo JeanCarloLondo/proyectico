@@ -68,6 +68,13 @@ void menu(HashTable &hashTable)
         {
             std::cout << "Ingrese Cédula del inquilino: ";
             std::cin >> id;
+
+            if (hashTable.searchItem(id))
+            {
+                std::cerr << "Error: La cédula ingresada ya existe en la lista." << std::endl;
+                break;
+            }
+
             std::cout << "Ingrese nombre del inquilino: ";
             std::cin.ignore();            // Limpiar el buffer de entrada antes de leer la línea
             std::getline(std::cin, name); // Leer el nombre completo incluyendo espacios
@@ -90,7 +97,7 @@ void menu(HashTable &hashTable)
             cout << "Ingrese la cédula del inquilino que desea buscar: " << endl;
             cin >> id;
             hashTable.searchItem(id);
-        
+
             break;
 
         case 5:

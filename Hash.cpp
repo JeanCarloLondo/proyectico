@@ -69,7 +69,7 @@ bool HashTable::searchItem(int id)
             return true;
         }
     }
-    cout << "ID not founded, try again!" << endl;
+    cout << "ID not founded!" << endl;
     return false;
 }
 
